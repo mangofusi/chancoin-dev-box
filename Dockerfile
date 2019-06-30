@@ -50,7 +50,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN echo 'root:abc123' |chpasswd
 
 # create a non-root user
-RUN useradd -d /home/tester -m -s /bin/bash tester && echo "tester:tester" | chpasswd && adduser tester sudo
+RUN useradd -d /home/tester -m -s /bin/bash tester && echo "tester:tester" | chpasswd && adduser tester sudo && adduser tester video
 
 # download and extract berkeley db 4.8 for wallets
 # Bitcoin needs bdb for building properly

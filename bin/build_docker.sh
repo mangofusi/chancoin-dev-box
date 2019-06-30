@@ -1,3 +1,3 @@
 #!/bin/sh
-docker build -t bitcoin-dev-box .
+docker build -t chancoin-dev-box .
 
