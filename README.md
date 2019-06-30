@@ -184,7 +184,19 @@ Another cool feature of this docker container is it comes pre-loaded with the ch
 
 **Note: it will ask you the password for the `tester` user because it needs to use `sudo`. The password is `tester`.**
 
+
+## Mining with sgminer
+
+To mine with sgminer, make sure you have at least 1 block generated using chancoind. You'll also need to pass through the required devices to the container when running it, e.g. for intel:
+
+`--device=/dev/dri/card0:/dev/dri/card0 --device=/dev/dri/renderD128:/dev/dri/renderD128`
+
+Then something such as the following can be used to start mining:
+
+`sgminer --algorithm nightcap_split -I4 --url=http://localhost:19001 --coinbase-addr=mtRipU3BueyarTRcWsKjKXgGsUWMdcWDzD --coinbase-sig=TEST`
+
 ## Using with docker
+
 This testnet-box can be used with [docker](https://www.docker.io/) to run it in an isolated container.
 
 
