@@ -13,8 +13,9 @@ ACCOUNT=
 CHANCOIN_SRC_DIR=/home/tester/chancoin/src
 DB4_LIB_DIR=/home/tester/chancoin/db4
 
-SGMINER=sgminer
-SGMINER_FLAGS=--algorithm nightcap -I10
+MINER=cpuminer
+MINER_FLAGS=-a cloverhash -D -P
+MINER_URL_PREFIX="-o "
 
 start:
 	$(CHANCOIND) $(B1) -daemon
@@ -44,17 +45,17 @@ stop:
 	-$(CHANCOINCLI) $(B2) stop
 
 mine1:
-	$(SGMINER) $(SGMINER_FLAGS) --url=http://localhost:19001 -u admin1 -p 123 --coinbase-addr=$(ACCOUNT) $(EXTRA)
+	$(MINER) $(MINER_FLAGS) $(MINER_URL_PREFIX)http://localhost:19001 -u admin1 -p 123 --coinbase-addr=$(ACCOUNT) $(EXTRA)
 
 mine2:
-	$(SGMINER) $(SGMINER_FLAGS) --url=http://localhost:19011 -u admin2 -p 123 --coinbase-addr=$(ACCOUNT) $(EXTRA)
+	$(MINER) $(MINER_FLAGS) $(MINER_URL_PREFIX)http://localhost:19011 -u admin2 -p 123 --coinbase-addr=$(ACCOUNT) $(EXTRA)
 
-build-bitcoin:
+build-chancoin:
 	cd $(CHANCOIN_SRC_DIR)/.. && ./autogen.sh && ./configure LDFLAGS="-L$(DB4_LIB_DIR)/lib" CPPFLAGS="-I$(DB4_LIB_DIR)/include" && make
 	echo "**** Tester's password is 'tester' ****"
 	cd $(CHANCOIN_SRC_DIR)/.. && sudo make install
 
-build: | stop build-bitcoin clean start
+build: | stop build-chancoin clean start
 
 clean:
 	find 1/regtest/* -not -name 'server.*' -delete

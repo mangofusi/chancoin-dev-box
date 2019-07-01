@@ -185,15 +185,29 @@ Another cool feature of this docker container is it comes pre-loaded with the ch
 **Note: it will ask you the password for the `tester` user because it needs to use `sudo`. The password is `tester`.**
 
 
+## Mining with cpuminer
+
+To mine with cpuminer, make sure you have at least 1 block generated using chancoind. Then either:
+
+```
+make mine1
+```
+
+OR
+
+```
+cpumine -a cloverhash -o http://127.0.0.1:19001 -u admin1 -p 123  --no-longpoll --no-getwork  --coinbase-addr=mpa12U1Mx6GBjb8cUA6RKxF6CkkJ3DwoGo -t 1
+```
+
+To start mining using cpuminer.
+
 ## Mining with sgminer
 
-To mine with sgminer, make sure you have at least 1 block generated using chancoind. You'll also need to pass through the required devices to the container when running it, e.g. for intel:
-
-`--device=/dev/dri/card0:/dev/dri/card0 --device=/dev/dri/renderD128:/dev/dri/renderD128`
+For sgminer, it is recommended to checkout and compile a local copy outside any container from `https://github.com/Chancoin-core/sgminer.git`.
 
 Then something such as the following can be used to start mining:
 
-`sgminer --algorithm nightcap_split -I4 --url=http://localhost:19001 --coinbase-addr=mtRipU3BueyarTRcWsKjKXgGsUWMdcWDzD --coinbase-sig=TEST`
+`sgminer --algorithm nightcap_split -I4 --url=<address of docker RPC port> --coinbase-addr=mtRipU3BueyarTRcWsKjKXgGsUWMdcWDzD --coinbase-sig=TEST`
 
 ## Using with docker
 

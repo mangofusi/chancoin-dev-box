@@ -88,10 +88,19 @@ RUN rm -rf db-4.8.30.NC.tar.gz
 
 
 # git clone the sgminer sourcecode
-RUN git clone --recurse-submodules --branch inc_fix https://github.com/mangofusi/sgminer.git sgminer
-WORKDIR /home/tester/sgminer
+#RUN git clone --recurse-submodules --branch inc_fix https://github.com/mangofusi/sgminer.git sgminer
+#WORKDIR /home/tester/sgminer
+#RUN sh ./autogen.sh
+#RUN ./configure --prefix=/usr/local --disable-nvml
+#RUN make -j2
+#USER root
+#RUN make install
+
+# git clone the cpuminer sourcecode
+RUN git clone --recurse-submodules --branch inc_fix https://github.com/Chancoin-core/cpuminer-multi.git sgminer
+WORKDIR /home/tester/cpuminer
 RUN sh ./autogen.sh
-RUN ./configure --prefix=/usr/local --disable-nvml
+RUN ./configure --prefix=/usr/local
 RUN make -j2
 USER root
 RUN make install
