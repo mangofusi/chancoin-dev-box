@@ -190,13 +190,13 @@ Another cool feature of this docker container is it comes pre-loaded with the ch
 To mine with cpuminer, make sure you have at least 1 block generated using chancoind. Then either:
 
 ```
-make mine1
+make mine1 ADDRESS=mpa12U1Mx6GBjb8cUA6RKxF6CkkJ3DwoGo
 ```
 
 OR
 
 ```
-cpumine -a cloverhash -o http://127.0.0.1:19001 -u admin1 -p 123  --no-longpoll --no-getwork  --coinbase-addr=mpa12U1Mx6GBjb8cUA6RKxF6CkkJ3DwoGo -t 1
+cpumine -a cloverhash -o http://127.0.0.1:19001 -u admin1 -p 123  --no-longpoll --coinbase-addr=mpa12U1Mx6GBjb8cUA6RKxF6CkkJ3DwoGo -t 1
 ```
 
 To start mining using cpuminer.

@@ -97,11 +97,10 @@ RUN rm -rf db-4.8.30.NC.tar.gz
 #RUN make install
 
 # git clone the cpuminer sourcecode
-RUN git clone --recurse-submodules --branch inc_fix https://github.com/Chancoin-core/cpuminer-multi.git sgminer
+RUN git clone --recurse-submodules --branch linux https://github.com/Chancoin-core/cpuminer-multi.git cpuminer
 WORKDIR /home/tester/cpuminer
 RUN sh ./autogen.sh
-RUN ./configure --prefix=/usr/local
-RUN make -j2
+RUN ./build.sh
 USER root
 RUN make install
 USER tester
